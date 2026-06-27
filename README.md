@@ -6,13 +6,13 @@ End-to-end Machine Learning system to predict passenger demand for public transp
 
 ---
 
-## 🎯 Problem
+## Problem
 
 The Trans Bolognia transport association managed passenger demand manually, with no data-driven tools to anticipate peak hours, optimize routes, or plan resources. This project built a complete ML pipeline to solve that.
 
 ---
 
-## 🤖 ML Pipeline (CRISP-DM)
+## ML Pipeline (CRISP-DM)
 
 ### Dataset
 - **Source:** Field data collected via interviews (15 drivers) and surveys (40 operators)
@@ -36,7 +36,7 @@ The Trans Bolognia transport association managed passenger demand manually, with
 
 ---
 
-## 🏛 Full System Stack
+## Full System Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -48,7 +48,7 @@ The Trans Bolognia transport association managed passenger demand manually, with
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 - Demanda de pasajeros/ — ML core: dataset, notebooks, trained models
 - Machine learning bolognia/ — Model experiments and production scripts
@@ -58,7 +58,7 @@ The Trans Bolognia transport association managed passenger demand manually, with
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ```bash
 pip install pandas numpy scikit-learn tensorflow keras matplotlib jupyter
@@ -68,7 +68,7 @@ python "Machine learning bolognia/predict_demand.py"
 
 ---
 
-## 👤 Author
+## Author
 
 **Josue Abraham Mamani Huanca**
 Systems Engineer · ML Engineer
