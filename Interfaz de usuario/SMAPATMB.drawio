@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1">
+    <mxGraphModel dx="1204" dy="852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" value="Sistema de Gestión" style="group" vertex="1" connectable="0">
+          <mxGeometry x="0" y="0" width="827" height="1169" as="geometry"/>
+        </mxCell>
+        <mxCell id="1" value="Conductor" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF" vertex="1">
+          <mxGeometry x="0.1" y="0.1" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="2" value="Miembro de la Directiva" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF" vertex="1">
+          <mxGeometry x="0.6" y="0.1" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="Superusuario" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF" vertex="1">
+          <mxGeometry x="0.1" y="0.3" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="Ver Rutas Asignadas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.1" y="0.5" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="Actualizar Ubicación en Tiempo Real" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.1" y="0.7" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="Recibir Notificaciones de Ruta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.6" y="0.5" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="Ver Demanda de Pasajeros" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.6" y="0.7" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="Gestionar Rutas y Turnos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.1" y="0.9" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="9" value="Supervisar Conductores en Tiempo Real" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.6" y="0.9" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="Enviar Mensajes a Conductores" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.35" y="0.7" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Gestionar Usuarios" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000" vertex="1">
+          <mxGeometry x="0.35" y="0.5" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Conductor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.53;exitY=0.14;exitDx=0;exitDy=0" edge="1" source="3" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Administrador" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0.32;exitDx=0;exitDy=0" edge="1" source="2" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

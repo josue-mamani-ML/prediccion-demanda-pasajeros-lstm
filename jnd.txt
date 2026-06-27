@@ -1,0 +1,133 @@
+# Cargar los datos
+data = pd.read_csv("dataset_music.csv")
+# Eliminar columnas innecesarias
+data = data.drop(['Timestamp', 'Composer', 'Exploratory', 'Frequency [Video game music]', 'Permissions'], axis='columns')
+data = data.sample(frac=1)
+# Reemplazar valores categóricos por numéricos en algunas columnas
+data['Primary streaming service'].replace(['null', 'YouTube Music', 'Spotify', 'Pandora', 'Apple Music', 'Other streaming service', 'I do not use a streaming service.'],
+                                          [0, 1, 2, 3, 4, 5, 6], inplace=True)
+data['While working'].replace(['Yes', 'No'], [1, 0], inplace=True)
+data['Instrumentalist'].replace(['Yes', 'No'], [1, 0], inplace=True)
+data['Foreign languages'].replace(['Yes', 'No'], [1, 0], inplace=True)
+data['Fav genre'].replace(['Classical', 'Metal', 'Rock', 'Pop', 'K pop', 'Hip hop', 'Country', 'Rap', 'R&B', 'EDM', 'Video game music', 'Gospel', 'Lofi', 'Jazz', 'Latin', 'Folk'],
+                                  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                                  inplace = True)
+
+data["Frequency [Classical]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Country]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+                                  
+data["Frequency [EDM]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Folk]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Gospel]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Hip hop]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Jazz]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [K pop]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Latin]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Lofi]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Metal]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Pop]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [R&B]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Rap]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+
+data["Frequency [Rock]"].replace(['Never', 'Rarely', 'Sometimes', 'Very frequently'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+data["Music effects"].replace(['null', 'Improve', 'No effect', 'Worsen'], 
+                                  [0, 1, 2, 3],
+                                  inplace = True)
+data = pd.get_dummies(data, columns=[
+    "Primary streaming service",
+    "Music effects",
+    "Fav genre"
+])
+
+# Dividir el conjunto de datos en entrenamiento y prueba
+X = data.drop(['Fav genre_0', 'Fav genre_1', 'Fav genre_2', 'Fav genre_3', 'Fav genre_4', 'Fav genre_5', 'Fav genre_6', 'Fav genre_7', 'Fav genre_8', 'Fav genre_9', 'Fav genre_10', 'Fav genre_11', 'Fav genre_12', 'Fav genre_13', 'Fav genre_14', 'Fav genre_15'], axis=1)
+y = data[['Fav genre_0', 'Fav genre_1', 'Fav genre_2', 'Fav genre_3', 'Fav genre_4', 'Fav genre_5', 'Fav genre_6', 'Fav genre_7', 'Fav genre_8', 'Fav genre_9', 'Fav genre_10', 'Fav genre_11', 'Fav genre_12', 'Fav genre_13', 'Fav genre_14', 'Fav genre_15']]
+# Dividir los datos en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Escalar las características
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+# Definir el modelo
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(128, input_shape=(X_train.shape[1],), activation='relu'),
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(32, activation='relu'),
+    tf.keras.layers.Dense(16, activation='softmax')
+])
+
+# Compilar el modelo
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+# Entrenar el modelo
+history = model.fit(X_train, y_train, epochs=300, validation_split=0.2)
+# Evaluar el modelo
+train_loss, train_accuracy = model.evaluate(X_train, y_train, verbose=0)
+test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=0)
+
+print(f"Train Accuracy: {train_accuracy:.4f}")
+print(f"Test Accuracy: {test_accuracy:.4f}")
+(como resultado me salió: 
+Train Accuracy: 0.2636
+Test Accuracy: 0.2230)
+
+# Graficar las curvas de pérdida y precisión
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+ax1.plot(history.history['loss'], label='Train Loss')
+ax1.plot(history.history['val_loss'], label='Val Loss')
+ax1.set_title('Loss')
+ax1.set_xlabel('Epochs')
+ax1.set_ylabel('Loss')
+ax1.legend()
+
+ax2.plot(history.history['accuracy'], label='Train Accuracy')
+ax2.plot(history.history['val_accuracy'], label='Val Accuracy')
+ax2.set_title('Accuracy')
+ax2.set_xlabel('Epochs')
+ax2.set_ylabel('Accuracy')
+ax2.legend()
+
+plt.show()
